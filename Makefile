@@ -6,31 +6,27 @@
 #    By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/18 10:48:05 by ncruz-ga          #+#    #+#              #
-#    Updated: 2024/03/18 10:51:56 by ncruz-ga         ###   ########.fr        #
+#    Updated: 2024/03/18 11:56:14 by ncruz-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philosophers
+NAME = philo
 
-CC = gcc
+CFLAGS = -Wall -Werror -Wextra
 
-CFLAGS = -g -Wall -Werror -Wextra
+PHILO = philo.a
 
-PHILOSOPHERS = philosophers.a
-
-LIB = ar rcs
-
-SRCS = ./src/check_argv.c\
-
+SRCS = src/philo.c\
+src/check_argv.c\
 
 OBJS = $(SRCS:.c=.o)
 
-$(NAME):		$(OBJS)
-					@$(LIB) $(PHILOSOPHERS) $(OBJS)
-					@$(CC) $(CFLAGS) $(PHILOSOPHERS) -o $(NAME)
+$(NAME):	$(OBJS)
+			@ ar rcs $(PHILO) $(OBJS)
+			@ gcc $(CFLAGS) $(PHILO) -o $(NAME)
 
 $(OBJS):		src/%.o : src/%.c
-					@$(CC) $(CFLAGS) -c $< -o $@
+				@ gcc $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
@@ -38,10 +34,8 @@ clean:
 				@rm -f $(OBJS)
 
 fclean:			
-				@rm -f $(NAME) $(OBJS) $(PHILOSOPHERS)
+				@rm -f $(NAME) $(OBJS) $(PHILO)
 
 re: fclean all
-
-pipe: all clean
 
 .PHONY: all re fclean clean

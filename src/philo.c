@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:27:20 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/15 14:10:54 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:54:22 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	inic_struct(t_philo *p, char **argv)
+static void	init_struct(t_philo *p, char **argv)
 {
 	p->nbr_philo = atoi(argv[1]);
 	p->nbr_to_eat = atoi(argv[3]);
