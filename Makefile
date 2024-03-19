@@ -6,7 +6,7 @@
 #    By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/18 10:48:05 by ncruz-ga          #+#    #+#              #
-#    Updated: 2024/03/19 12:04:20 by ncruz-ga         ###   ########.fr        #
+#    Updated: 2024/03/19 14:34:46 by ncruz-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ PHILO = philo.a
 SRCS = src/philo.c\
 		src/check_argv.c\
 		src/philo_utils.c\
+		src/init_program.c\
 
 OBJS = $(SRCS:.c=.o)
 
