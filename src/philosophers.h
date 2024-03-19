@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:21:22 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/19 14:31:55 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:56:49 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef struct s_philo
 {
@@ -49,11 +50,13 @@ typedef struct s_data
 
 /*--- INIT ---*/
 void	init_forks(pthread_mutex_t *forks, int nbr);
+void	init_philos(t_philo *philos, t_data *d, pthread_mutex_t f, char **argv);
 
 /*--- CHECK ---*/
 int		check_argv(char **argv, int argc, int i, int j);
 
 /*--- UTILS ---*/
 int		ft_atoi(char *str);
+size_t	get_time(void);
 
 #endif

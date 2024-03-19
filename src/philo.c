@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:27:20 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/19 14:33:40 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:46:09 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ int	main(int argc, char **argv)
 	d = malloc(sizeof(t_data *));
 	init_struct(d, philos);
 	init_forks(forks, ft_atoi(argv[1]));
+	init_philos(philos, d, forks, argv);
 }

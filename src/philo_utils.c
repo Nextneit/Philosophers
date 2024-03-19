@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:00:50 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/19 12:05:38 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:55:59 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,13 @@ int	ft_atoi(char *str)
 	if (sign % 2 == 1)
 		return (nbr * -1);
 	return (nbr);
+}
+
+size_t	get_time(void)
+{
+	struct timeval	time;
+
+	if (gettimeofday(time, NULL) == 1)
+		printf("gettimeofay() failure\n");
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
