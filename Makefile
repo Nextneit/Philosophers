@@ -6,7 +6,7 @@
 #    By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/18 10:48:05 by ncruz-ga          #+#    #+#              #
-#    Updated: 2024/03/18 11:56:14 by ncruz-ga         ###   ########.fr        #
+#    Updated: 2024/03/19 12:04:20 by ncruz-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CFLAGS = -Wall -Werror -Wextra
 PHILO = philo.a
 
 SRCS = src/philo.c\
-src/check_argv.c\
+		src/check_argv.c\
+		src/philo_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 

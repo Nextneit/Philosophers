@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:27:20 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/18 10:54:22 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:07:15 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	init_struct(t_philo *p, char **argv)
+/* static void	init_struct(t_data *d, char **argv)
 {
-	p->nbr_philo = atoi(argv[1]);
-	p->nbr_to_eat = atoi(argv[3]);
-}
+	d->dead_flag = 0;
+} */
 
 int	main(int argc, char **argv)
 {
-	t_philo	*philo;
+	t_data	*d;
 
-	if (check_argv(argv, argc) == EXIT_FAILURE)
+	if (check_argv(argv, argc, 1, 0) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	philo = malloc(sizeof(t_philo *));
-	init_struct(philo, argv);
+	d = malloc(sizeof(t_data *));
+	//init_struct(d, argv);
 }
