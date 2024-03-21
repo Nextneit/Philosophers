@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:29:11 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/20 10:54:54 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:52:01 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,29 @@ void	init_forks(pthread_mutex_t *forks, int nbr)
 	}
 }
 
-void	init_thread(t_data *d, t_philo *p, int nbr)
+void	init_thread(t_data *d, pthread_mutex_t *f, int nbr)
 {
 	int			i;
 	pthread_t	monitor;
 
 	i = 0;
-	pthread_create(&monitor, NULL, );
 	while (i < nbr)
 	{
-		pthread_create(&p[i].thread, NULL, , p);
+		if (pthread_create(&d->philos[i].thread, NULL, &routine,
+				d->philos[i]) != 0)
+			return (EXIT_FAILURE);
 		i++;
 	}
+	if (pthread_create(&monitor, NULL, &observer, d->philos) != 0)
+		return (EXIT_FAILURE);
+	if (pthread_join(&monitor, NULL) != 0)
+		return (EXIT_FAILURE);
+	i = 0;
+	while (i < nbr)
+	{
+		if (pthread_join(&d->philos[i].thread, NULL) != 0)
+			return (EXIT_FAILURE)
+		i++;
+	}
+	return (EXIT_SUCCESS);
 }
