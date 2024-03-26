@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:29:11 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/21 14:52:01 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:02:53 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	init_thread(t_data *d, pthread_mutex_t *f, int nbr)
 	while (i < nbr)
 	{
 		if (pthread_create(&d->philos[i].thread, NULL, &routine,
-				d->philos[i]) != 0)
+				&d->philos[i]) != 0)
 			return (EXIT_FAILURE);
 		i++;
 	}
@@ -83,7 +83,7 @@ void	init_thread(t_data *d, pthread_mutex_t *f, int nbr)
 	while (i < nbr)
 	{
 		if (pthread_join(&d->philos[i].thread, NULL) != 0)
-			return (EXIT_FAILURE)
+			return (EXIT_FAILURE);
 		i++;
 	}
 	return (EXIT_SUCCESS);

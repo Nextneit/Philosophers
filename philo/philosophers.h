@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:21:22 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/20 12:52:17 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:03:00 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,15 @@ typedef struct s_data
 }				t_data;
 
 /*--- THREAD ---*/
-void	init_thread(t_data *d, t_philo *p, int nbr);
+void	init_thread(t_data *d, pthread_mutex_t *f, int nbr);
 
 /*--- INIT ---*/
 void	init_forks(pthread_mutex_t *forks, int nbr);
 void	init_philos(t_philo *philos, t_data *d, pthread_mutex_t *f,
 			char **argv);
+
+/*--- OBSERVER ---*/
+void	*observer(void *monitor);
 
 /*--- CHECK ---*/
 int		check_argv(char **argv, int argc, int i, int j);
