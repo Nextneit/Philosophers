@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:00:50 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/19 15:55:59 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:03:27 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,18 @@ size_t	get_time(void)
 {
 	struct timeval	time;
 
-	if (gettimeofday(time, NULL) == 1)
+	if (gettimeofday(&time, NULL) == 1)
 		printf("gettimeofay() failure\n");
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	print_message(char *str, t_philo *p, int id)
+{
+	size_t	time;
+
+	pthread_mutex_lock(p->write_lock);
+	time = get_time() - p->start_time;
+	if (!dead_loop(p))
+		printf("%zu %d %s\n", time, id, str);
+	pthread_mutex_unlock(p->write_lock);
 }
