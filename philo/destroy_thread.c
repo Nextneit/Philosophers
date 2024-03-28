@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 12:31:35 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/27 12:35:46 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:50:41 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ void	destroy_thread(char *msg, t_data *d, pthread_mutex_t *f)
 		pthread_mutex_destroy(&f[i]);
 		i++;
 	}
+	free(d);
 }

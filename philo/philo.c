@@ -6,11 +6,16 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:27:20 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/28 12:03:50 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:52:24 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+/* void ft_leaks(void)
+{
+	system("leaks -q philo");
+}atexit(ft_leaks); */
 
 static void	init_struct(t_data *d, t_philo *philos)
 {
