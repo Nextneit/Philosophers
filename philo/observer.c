@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:43:43 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/28 12:13:07 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/28 14:42:26 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	check_meal(t_philo *philo)
 static int	dead_philo(t_philo *philo, size_t time_die)
 {
 	pthread_mutex_lock(philo->meal_lock);
-	if (get_time() - philo->last_meal >= time_die && philo->eating)
+	if (get_time() - philo->last_meal >= time_die)
 		return (pthread_mutex_unlock(philo->meal_lock), EXIT_FAILURE);
 	return (pthread_mutex_unlock(philo->meal_lock), EXIT_SUCCESS);
 }
@@ -56,7 +56,7 @@ static int	check_dead(t_philo *philo)
 	{
 		if (dead_philo(&philo[i], philo[i].time_to_die))
 		{
-			print_msg("died",  &philo[i], philo[i].id);
+			print_msg("died", &philo[i], philo[i].id);
 			pthread_mutex_lock(philo[0].dead_lock);
 			*philo->dead = 1;
 			pthread_mutex_unlock(philo[0].dead_lock);

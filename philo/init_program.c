@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:29:11 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/28 12:10:24 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:20:46 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	init_philos(t_philo *philos, t_data *d, pthread_mutex_t *f, char **argv)
 		if (i == 0)
 			philos[i].r_fork = &f[ft_atoi(argv[1]) - 1];
 		else
-			philos[i].l_fork = &f[i - 1];
+			philos[i].r_fork = &f[i - 1];
 		i++;
 	}
 }

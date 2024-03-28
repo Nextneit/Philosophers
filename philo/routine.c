@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:46:20 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/28 13:07:25 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:21:46 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,24 @@ void	sleeping(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
-	pthread_mutex_lock(philo->r_fork);
-	print_msg("has taken a fork", philo, philo->id);
 	if (philo->nbr_philos == 1)
 	{
+		pthread_mutex_lock(philo->l_fork);
+		print_msg("has taken a fork", philo, philo->id);
 		ft_usleep(philo->time_to_die);
-		pthread_mutex_unlock(philo->r_fork);
+		pthread_mutex_unlock(philo->l_fork);
 		return ;
 	}
 	pthread_mutex_lock(philo->l_fork);
+	pthread_mutex_lock(philo->r_fork);
 	print_msg("has taken a fork", philo, philo->id);
-	philo->eating = 1;
+	print_msg("has taken a fork", philo, philo->id);
+	pthread_mutex_lock(philo->meal_lock);
 	print_msg("is eating", philo, philo->id);
+	philo->last_meal = get_time();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->meal_lock);
-	philo->eating = 0;
+	ft_usleep(philo->time_to_eat);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
 }
@@ -60,7 +63,7 @@ void	*routine(void *philo)
 	p = (t_philo *)philo;
 	if (p->id % 2 == 0)
 		ft_usleep(1);
-	while (dead_loop(philo) == EXIT_SUCCESS)
+	while (dead_loop(philo) != EXIT_FAILURE)
 	{
 		eat(philo);
 		sleeping(philo);
