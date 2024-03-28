@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 12:00:50 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/26 14:03:27 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:58:21 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ size_t	get_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	print_message(char *str, t_philo *p, int id)
+void	print_msg(char *str, t_philo *p, int id)
 {
 	size_t	time;
 
@@ -57,4 +57,14 @@ void	print_message(char *str, t_philo *p, int id)
 	if (!dead_loop(p))
 		printf("%zu %d %s\n", time, id, str);
 	pthread_mutex_unlock(p->write_lock);
+}
+
+int	ft_usleep(size_t ms)
+{
+	size_t	start;
+
+	start = get_time();
+	while ((get_time() - start) < ms)
+		usleep(500);
+	return (EXIT_SUCCESS);
 }

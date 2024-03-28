@@ -6,11 +6,38 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:29:11 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/26 12:02:53 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:10:24 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	init_thread(t_data *d, pthread_mutex_t *f, int nbr)
+{
+	int			i;
+	pthread_t	monitor;
+
+	i = 0;
+	while (i < nbr)
+	{
+		if (pthread_create(&d->philos[i].thread, NULL, &routine,
+				&d->philos[i]) != 0)
+			destroy_thread("Thread creation error", d, f);
+		i++;
+	}
+	if (pthread_create(&monitor, NULL, &observer, d->philos) != 0)
+		destroy_thread("Thread creation error", d, f);
+	if (pthread_join(monitor, NULL) != 0)
+		destroy_thread("Thread join error", d, f);
+	i = 0;
+	while (i < nbr)
+	{
+		if (pthread_join(d->philos[i].thread, NULL) != 0)
+			destroy_thread("Thread join error", d, f);
+		i++;
+	}
+	return (EXIT_SUCCESS);
+}
 
 static void	init_arg(t_philo *philo, char **argv)
 {
@@ -60,31 +87,4 @@ void	init_forks(pthread_mutex_t *forks, int nbr)
 		pthread_mutex_init(&forks[i], NULL);
 		i++;
 	}
-}
-
-void	init_thread(t_data *d, pthread_mutex_t *f, int nbr)
-{
-	int			i;
-	pthread_t	monitor;
-
-	i = 0;
-	while (i < nbr)
-	{
-		if (pthread_create(&d->philos[i].thread, NULL, &routine,
-				&d->philos[i]) != 0)
-			return (EXIT_FAILURE);
-		i++;
-	}
-	if (pthread_create(&monitor, NULL, &observer, d->philos) != 0)
-		return (EXIT_FAILURE);
-	if (pthread_join(&monitor, NULL) != 0)
-		return (EXIT_FAILURE);
-	i = 0;
-	while (i < nbr)
-	{
-		if (pthread_join(&d->philos[i].thread, NULL) != 0)
-			return (EXIT_FAILURE);
-		i++;
-	}
-	return (EXIT_SUCCESS);
 }

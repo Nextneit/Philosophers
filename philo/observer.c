@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 11:43:43 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/26 12:45:41 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:13:07 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	check_meal(t_philo *philo)
 	if (end == philo[0].nbr_philos)
 	{
 		pthread_mutex_lock(philo[0].dead_lock);
-		philo->dead = 1;
+		*philo->dead = 1;
 		pthread_mutex_unlock(philo[0].dead_lock);
 		return (EXIT_FAILURE);
 	}
@@ -56,9 +56,9 @@ static int	check_dead(t_philo *philo)
 	{
 		if (dead_philo(&philo[i], philo[i].time_to_die))
 		{
-			print_msg();
+			print_msg("died",  &philo[i], philo[i].id);
 			pthread_mutex_lock(philo[0].dead_lock);
-			philo->dead = 1;
+			*philo->dead = 1;
 			pthread_mutex_unlock(philo[0].dead_lock);
 			return (EXIT_FAILURE);
 		}

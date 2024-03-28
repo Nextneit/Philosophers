@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:21:22 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/26 17:21:04 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:17:29 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ typedef struct s_data
 	t_philo			*philos;
 }				t_data;
 
-/*--- THREAD ---*/
-void	init_thread(t_data *d, pthread_mutex_t *f, int nbr);
-
 /*--- INIT ---*/
 void	init_forks(pthread_mutex_t *forks, int nbr);
+int		init_thread(t_data *d, pthread_mutex_t *f, int nbr);
 void	init_philos(t_philo *philos, t_data *d, pthread_mutex_t *f,
 			char **argv);
+
 /*--- ROUTINE ---*/
-void	routine(void *philo);
+void	*routine(void *philo);
+int		dead_loop(t_philo *philo);
+void	think(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	eat(t_philo *philo);
 
 /*--- OBSERVER ---*/
 void	*observer(void *monitor);
@@ -67,7 +70,8 @@ int		check_argv(char **argv, int argc, int i, int j);
 /*--- UTILS ---*/
 int		ft_atoi(char *str);
 size_t	get_time(void);
-void	print_message(char *str, t_philo *p, int id);
-int		dead_loop(t_philo *philo);
+void	print_msg(char *str, t_philo *p, int id);
+int		ft_usleep(size_t ms);
+void	destroy_thread(char *msg, t_data *d, pthread_mutex_t *f);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 12:46:20 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/26 17:20:35 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:07:25 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	think(t_philo *philo)
 {
-	print_message("is thinking", philo, philo->id);
+	print_msg("is thinking", philo, philo->id);
 }
 
-void	sleep(t_philo *philo)
+void	sleeping(t_philo *philo)
 {
-	print_message("is sleeping", philo, philo->id);
+	print_msg("is sleeping", philo, philo->id);
 	ft_usleep(philo->time_to_sleep);
 }
 
 void	eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
-	print_message("has taken a fork", philo, philo->id);
+	print_msg("has taken a fork", philo, philo->id);
 	if (philo->nbr_philos == 1)
 	{
 		ft_usleep(philo->time_to_die);
@@ -34,9 +34,9 @@ void	eat(t_philo *philo)
 		return ;
 	}
 	pthread_mutex_lock(philo->l_fork);
-	print_message("has taken a fork", philo, philo->id);
+	print_msg("has taken a fork", philo, philo->id);
 	philo->eating = 1;
-	print_message("iss eating", philo, philo->id);
+	print_msg("is eating", philo, philo->id);
 	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->meal_lock);
 	philo->eating = 0;
@@ -47,13 +47,13 @@ void	eat(t_philo *philo)
 int	dead_loop(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_lock);
-	if (philo->dead == 1)
+	if (*philo->dead == 1)
 		return (pthread_mutex_unlock(philo->dead_lock), EXIT_FAILURE);
 	pthread_mutex_unlock(philo->dead_lock);
 	return (EXIT_SUCCESS);
 }
 
-void	routine(void *philo)
+void	*routine(void *philo)
 {
 	t_philo	*p;
 
@@ -62,9 +62,9 @@ void	routine(void *philo)
 		ft_usleep(1);
 	while (dead_loop(philo) == EXIT_SUCCESS)
 	{
-		think(philo);
-		sleep(philo);
 		eat(philo);
+		sleeping(philo);
+		think(philo);
 	}
 	return (philo);
 }

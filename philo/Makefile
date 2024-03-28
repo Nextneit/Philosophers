@@ -6,7 +6,7 @@
 #    By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/18 10:48:05 by ncruz-ga          #+#    #+#              #
-#    Updated: 2024/03/19 14:34:46 by ncruz-ga         ###   ########.fr        #
+#    Updated: 2024/03/28 12:16:21 by ncruz-ga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,14 @@ CFLAGS = -Wall -Werror -Wextra
 
 PHILO = philo.a
 
-SRCS = src/philo.c\
-		src/check_argv.c\
-		src/philo_utils.c\
-		src/init_program.c\
+SRCS = philo.c\
+		check_argv.c\
+		philo_utils.c\
+		init_program.c\
+		observer.c\
+		routine.c\
+		destroy_thread.c\
+		
 
 OBJS = $(SRCS:.c=.o)
 
@@ -27,7 +31,7 @@ $(NAME):	$(OBJS)
 			@ ar rcs $(PHILO) $(OBJS)
 			@ gcc $(CFLAGS) $(PHILO) -o $(NAME)
 
-$(OBJS):		src/%.o : src/%.c
+$(OBJS):		%.o : %.c
 				@ gcc $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
