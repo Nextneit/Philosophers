@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 13:45:51 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/19 14:34:16 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:07:15 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_argv(char **argv, int argc, int i, int j)
 		j = 0;
 		while (argv[i][j] != '\0')
 		{
-			if (ft_atoi(argv[i]) == 0)
+			if (i < 5 && ft_atoi(argv[i]) == 0)
 				return (printf("Error: Argumento invalido\n"), EXIT_FAILURE);
 			if (is_digit(argv[i][j]) == EXIT_FAILURE || ft_atoi(argv[i]) < 0)
 				return (printf("Error: Argumento incorrecto\n"),

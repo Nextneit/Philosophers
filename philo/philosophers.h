@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:21:22 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/28 15:20:36 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:54:29 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
-	int				eating;
 	int				meals_eaten;
 	size_t			last_meal;
 	size_t			time_to_die;

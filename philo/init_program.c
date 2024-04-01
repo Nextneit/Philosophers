@@ -6,7 +6,7 @@
 /*   By: ncruz-ga <ncruz-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:29:11 by ncruz-ga          #+#    #+#             */
-/*   Updated: 2024/03/28 15:20:46 by ncruz-ga         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:54:23 by ncruz-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	init_philos(t_philo *philos, t_data *d, pthread_mutex_t *f, char **argv)
 	while (i < ft_atoi(argv[1]))
 	{
 		philos[i].id = i + 1;
-		philos[i].eating = 0;
 		philos[i].meals_eaten = 0;
 		philos[i].start_time = get_time();
 		philos[i].last_meal = get_time();
